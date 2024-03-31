@@ -1,0 +1,2 @@
+from .simple_discriminator import SimpleCartoonGANDiscriminator
+from .cartoongan_discriminator import CartoonGANDiscriminator, StyleCartoonGANDiscriminator
