@@ -11,8 +11,8 @@ def logit(value):
 class GANLoss(nn.Module):
     def __init__(self, criterion=nn.BCELoss(), is_logit=False, clip=None):
         super().__init__()
-        self.register_buffer('real_label', torch.tensor(1.0))
-        self.register_buffer('fake_label', torch.tensor(0.0))
+        self.register_buffer("real_label", torch.tensor(1.0))
+        self.register_buffer("fake_label", torch.tensor(0.0))
         self.use_clip = clip is not None and clip > 0
         if self.use_clip:
             assert clip < 0.5
@@ -40,5 +40,3 @@ class GANLoss(nn.Module):
         if use_clip:
             pred = self.clip_tensor(pred)
         return self.base_loss(pred, self.get_target_tensor(pred, target_is_real))
-
-

@@ -4,7 +4,6 @@ from .loss_wrapper import LossWrapper
 
 
 class IdentityLoss(LossWrapper):
-
     def __init__(self):
         super().__init__(self, weight=0)
 

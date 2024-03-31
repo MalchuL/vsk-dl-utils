@@ -5,12 +5,12 @@ from torch import nn
 
 
 def get_timestep_embedding(
-        timesteps: torch.Tensor,
-        embedding_dim: int,
-        flip_sin_to_cos: bool = False,
-        downscale_freq_shift: float = 1,
-        scale: float = 1,
-        max_period: int = 10000,
+    timesteps: torch.Tensor,
+    embedding_dim: int,
+    flip_sin_to_cos: bool = False,
+    downscale_freq_shift: float = 1,
+    scale: float = 1,
+    max_period: int = 10000,
 ):
     """
     This matches the implementation in Denoising Diffusion Probabilistic Models: Create sinusoidal timestep embeddings.
@@ -48,7 +48,13 @@ def get_timestep_embedding(
 
 
 class Timesteps(nn.Module):
-    def __init__(self, num_channels: int, flip_sin_to_cos: bool, downscale_freq_shift: float, max_period=10000):
+    def __init__(
+        self,
+        num_channels: int,
+        flip_sin_to_cos: bool,
+        downscale_freq_shift: float,
+        max_period=10000,
+    ):
         super().__init__()
         self.num_channels = num_channels
         self.flip_sin_to_cos = flip_sin_to_cos

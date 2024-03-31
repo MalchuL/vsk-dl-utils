@@ -5,13 +5,60 @@ from vsk_dl_utils.utils.interpolation.interpolator import Interpolator
 
 
 class LossWrapper(nn.Module):
-    def __init__(self, loss, weight=1, warmup_num_steps=None, warmup_method='easeInExpo', inverse=False):
-        """
-        Loss wrapper to make it more stable and generic for training
-        :param loss: nn.Module loss
-        :param weight: Weight to multiply value. Useful to avoid params storing in class
+    def __init__(
+        self, loss, weight=1, warmup_num_steps=None, warmup_method="easeInExpo", inverse=False
+    ):
+        """Loss wrapper to make it more stable and generic for training :param loss: nn.Module loss
+        :param weight: Weight to multiply value.
+
+        Useful to avoid params storing in class :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+        https://pypi.org/project/pytweening/
+           :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
+          :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
+          :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
+         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
+         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
+         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
+         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        method name. Look at
+        https://pypi.org/project/pytweening/
         :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at https://pypi.org/project/pytweening/
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers
+        :param warmup_method: Pytweening warmup method name. Look at
+            https://pypi.org/project/pytweening/
         :param inverse: If true starts from 1 else from 0. False by default
         """
         super().__init__()
@@ -22,10 +69,11 @@ class LossWrapper(nn.Module):
         self.weight = weight
 
         self.interpolator = None
-        self.register_buffer('num_steps', torch.zeros([], dtype=torch.long))
+        self.register_buffer("num_steps", torch.zeros([], dtype=torch.long))
         if warmup_num_steps is not None and warmup_num_steps > 0:
-            self.interpolator = Interpolator(method=warmup_method, num_steps=warmup_num_steps,
-                                             inverse=inverse)
+            self.interpolator = Interpolator(
+                method=warmup_method, num_steps=warmup_num_steps, inverse=inverse
+            )
 
     def forward(self, *args, **kwargs):
         warmup_weight = 1

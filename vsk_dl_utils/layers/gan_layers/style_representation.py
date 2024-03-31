@@ -7,18 +7,22 @@ from vsk_dl_utils.layers.gan_layers.guided_filter import GuidedFilter
 
 # Style representation module https://arxiv.org/pdf/2207.02426.pdf
 class StyleRepresentation(nn.Module):
-    def __init__(self, layers=(), *args, weight_mode='uniform', r=5, eps=2e-1):
+    def __init__(self, layers=(), *args, weight_mode="uniform", r=5, eps=2e-1):
         super().__init__()
         self.layer_names = layers
-        self.layers = nn.ModuleDict({'color_shift': ColorShift(weight_mode=weight_mode),
-                                     'color_shift_with_sobel': ColorShiftWithSobel(weight_mode=weight_mode),
-                                     'surface': GuidedFilter(r=r, eps=eps),
-                                     'identity': nn.Identity()})
+        self.layers = nn.ModuleDict(
+            {
+                "color_shift": ColorShift(weight_mode=weight_mode),
+                "color_shift_with_sobel": ColorShiftWithSobel(weight_mode=weight_mode),
+                "surface": GuidedFilter(r=r, eps=eps),
+                "identity": nn.Identity(),
+            }
+        )
 
     def forward(self, x):
         layers = []
         for layer_name in self.layer_names:
-            if layer_name == 'surface':
+            if layer_name == "surface":
                 out_layer = self.layers[layer_name](x, x)
             else:
                 out_layer = self.layers[layer_name](x)

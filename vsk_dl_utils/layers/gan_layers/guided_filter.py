@@ -1,5 +1,5 @@
-import torch.nn as nn
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 
 
@@ -10,8 +10,8 @@ class GuidedFilter(nn.Module):
         self.r = r
         self.input_channels = input_channels
         self.eps = eps
-        self.register_buffer('box_kernel', self.calculate_box_filter(self.r, self.input_channels))
-        self.register_buffer('N_box_kernel', self.calculate_box_filter(self.r, 1))
+        self.register_buffer("box_kernel", self.calculate_box_filter(self.r, self.input_channels))
+        self.register_buffer("N_box_kernel", self.calculate_box_filter(self.r, 1))
 
     @staticmethod
     def calculate_box_filter(r, ch):
@@ -20,10 +20,14 @@ class GuidedFilter(nn.Module):
         return box_kernel
 
     def box_filter(self, x, channels=None):
-        return F.conv2d(x,
-                        self.N_box_kernel if channels == 1 else self.box_kernel,
-                        bias=None, stride=1, padding='same',
-                        groups=self.input_channels if channels is None else channels)
+        return F.conv2d(
+            x,
+            self.N_box_kernel if channels == 1 else self.box_kernel,
+            bias=None,
+            stride=1,
+            padding="same",
+            groups=self.input_channels if channels is None else channels,
+        )
 
     def forward(self, x, y):
         N, C, H, W = x.shape
@@ -47,7 +51,7 @@ class GuidedFilter(nn.Module):
         return 3
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = torch.rand(2, 3, 64, 64)
     module = GuidedFilter(r=5, input_channels=3)
     print(module(x, x).shape)

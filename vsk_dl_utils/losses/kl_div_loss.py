@@ -1,5 +1,5 @@
-import torch
 import numpy as np
+import torch
 
 
 class AbstractDistribution:
@@ -21,7 +21,7 @@ class DiracDistribution(AbstractDistribution):
         return self.value
 
 
-class DiagonalGaussianDistribution(object):
+class DiagonalGaussianDistribution:
     def __init__(self, parameters, deterministic=False, generator=None):
         self.parameters = parameters
         if isinstance(parameters, (tuple, list)):
@@ -37,27 +37,36 @@ class DiagonalGaussianDistribution(object):
             self.var = self.std = torch.zeros_like(self.mean)
 
     def sample(self):
-        x = self.mean + self.std * torch.randn(self.mean.shape, device=self.mean.device, generator=self.generator, dtype=self.mean.dtype)
+        x = self.mean + self.std * torch.randn(
+            self.mean.shape,
+            device=self.mean.device,
+            generator=self.generator,
+            dtype=self.mean.dtype,
+        )
         return x
 
     def kl(self, other=None):
         if self.deterministic:
-            return torch.Tensor([0.])
+            return torch.Tensor([0.0])
         else:
             if other is None:
-                return 0.5 * torch.mean(torch.pow(self.mean, 2)
-                                       + self.var - 1.0 - self.logvar)
+                return 0.5 * torch.mean(torch.pow(self.mean, 2) + self.var - 1.0 - self.logvar)
             else:
                 return 0.5 * torch.mean(
                     torch.pow(self.mean - other.mean, 2) / other.var
-                    + self.var / other.var - 1.0 - self.logvar + other.logvar)
+                    + self.var / other.var
+                    - 1.0
+                    - self.logvar
+                    + other.logvar
+                )
 
     def nll(self, sample):
         if self.deterministic:
-            return torch.Tensor([0.])
+            return torch.Tensor([0.0])
         logtwopi = np.log(2.0 * np.pi)
         return 0.5 * torch.mean(
-            logtwopi + self.logvar + torch.pow(sample - self.mean, 2) / self.var)
+            logtwopi + self.logvar + torch.pow(sample - self.mean, 2) / self.var
+        )
 
     def mode(self):
         return self.mean

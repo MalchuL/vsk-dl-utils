@@ -6,14 +6,14 @@ from torch import nn
 
 def get_torch_dtype(precision: Union[int, str]):
     precision = str(precision)
-    if precision == '16':
+    if precision == "16":
         return torch.float16
-    elif precision == '32':
+    elif precision == "32":
         return torch.float32
-    elif precision in ['b16', 'bfloat16']:
+    elif precision in ["b16", "bfloat16"]:
         return torch.bfloat16
     else:
-        raise ValueError(f'Precision {precision} is not supported')
+        raise ValueError(f"Precision {precision} is not supported")
 
 
 def convert_tensor_dtype(tensor: torch.Tensor, precision):
@@ -30,4 +30,4 @@ def convert_model_dtype(model: nn.Module, precision: Union[int, str]):
     elif dtype == torch.bfloat16:
         return model.to(dtype=dtype)
     else:
-        raise ValueError(f'Precision {precision} is not supported')
+        raise ValueError(f"Precision {precision} is not supported")

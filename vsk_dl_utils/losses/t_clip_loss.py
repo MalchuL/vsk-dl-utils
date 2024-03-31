@@ -15,4 +15,3 @@ class TClipLoss(nn.Module):
         min_mask = torch.clip(tensor, min=self.min)
         loss = self.loss(tensor, max_mask) + self.loss(tensor, min_mask)
         return loss * self.weight
-

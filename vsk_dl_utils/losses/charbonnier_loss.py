@@ -7,10 +7,10 @@ class CharbonnierLoss(nn.Module):
     """Charbonnier Loss (L1)"""
 
     def __init__(self, eps=1e-3):
-        super(CharbonnierLoss, self).__init__()
+        super().__init__()
         self.eps = eps
-        self._eps_square = self.eps ** 2
-        self.mse = nn.MSELoss(reduction='none')
+        self._eps_square = self.eps**2
+        self.mse = nn.MSELoss(reduction="none")
 
     def forward(self, x, y):
         loss = torch.sqrt(self.mse(x, y) + self._eps_square).mean()

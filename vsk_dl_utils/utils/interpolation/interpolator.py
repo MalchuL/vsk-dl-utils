@@ -35,18 +35,18 @@ class MultiInterpolator:
         current_milestone = 0
         for interpolator in self.interpolators:
             current_milestone += interpolator.num_steps
-            self.milestones.append({'milestone': current_milestone, 'interpolator': interpolator})
+            self.milestones.append({"milestone": current_milestone, "interpolator": interpolator})
 
     def interpolate(self, step):
         prev_milestone = 0
         for interpolation in self.milestones[:-1]:
-            interpolator = interpolation['interpolator']
-            milestone = interpolation['milestone']
+            interpolator = interpolation["interpolator"]
+            milestone = interpolation["milestone"]
             if step < milestone:
                 return interpolator.interpolate(step - prev_milestone)
             prev_milestone = milestone
 
-        return self.milestones[-1]['interpolator'].interpolate(step - prev_milestone)
+        return self.milestones[-1]["interpolator"].interpolate(step - prev_milestone)
 
     def __call__(self, step):
         return self.interpolate(step)

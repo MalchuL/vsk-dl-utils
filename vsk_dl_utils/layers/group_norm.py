@@ -1,4 +1,4 @@
-from math import sqrt, log2
+from math import log2, sqrt
 
 import torch.nn as nn
 
@@ -6,7 +6,7 @@ import torch.nn as nn
 class GroupNorm(nn.GroupNorm):
     def __init__(self, num_channels: int, affine=True, eps=1e-5):
         # num_channels = groups * (groups/ DIVIDER)
-        groups = 2 ** round((log2(sqrt(num_channels * 2))))
+        groups = 2 ** round(log2(sqrt(num_channels * 2)))
         num_groups = groups
         super().__init__(num_groups, num_channels, affine=affine, eps=eps)
 
