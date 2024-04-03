@@ -11,6 +11,8 @@ setup(
         "torchvision==0.17.1",
         "torchmetrics>=0.11.4",
         "GitPython==3.1.27",
+        "natsorted",
+        "tqdm",
         "pytweening",
         "numpy",
     ],
