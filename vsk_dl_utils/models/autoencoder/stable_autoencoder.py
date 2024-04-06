@@ -1,14 +1,12 @@
 import math
 from typing import List
 
-import numpy as np
 import torch
 from torch import nn
-import torch.nn.functional as F
 
 from .abstract_autoencoder import AbstractAutoEncoder
-from ...layers import conv3x3, conv1x1, Downsample, Upsample, SobelFilter
-from ...utils.norm_layers import get_norm_layer
+from vsk_dl_utils.layers import conv3x3, conv1x1, SobelFilter, Downsample, Upsample
+from vsk_dl_utils.utils.norm_layers import get_norm_layer
 
 PADDING_MODE = 'reflect'
 BIAS = False

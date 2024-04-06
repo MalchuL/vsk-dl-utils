@@ -1,9 +1,9 @@
 import torch
 
-from vsk_dl_utils.models.blocks.conv.convbnrelu import Conv2dBNReLU, BNReLUConv2d
-from vsk_dl_utils.models.blocks.conv.res_block import ResidualBlock
-from vsk_dl_utils.models.blocks.conv.res_block_v2 import ResidualBlockV2
-from vsk_dl_utils.models.blocks.conv.separable_conv2d import SeparableConv2d
+from vsk_dl_utils.layers.conv.convbnrelu import Conv2dBNReLU, BNReLUConv2d
+from vsk_dl_utils.layers.conv.resnet.res_block import ResidualBlock
+from vsk_dl_utils.layers.conv.resnet.res_block_v2 import ResidualBlockV2
+from vsk_dl_utils.layers.conv.separable_conv2d import SeparableConv2d
 
 
 @torch.no_grad()

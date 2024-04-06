@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from vsk_dl_utils.layers.conv_layers import conv1x1, conv3x3
-from vsk_dl_utils.layers.gan_layers.style_representation import StyleRepresentation
+from vsk_dl_utils.layers import conv1x1, conv3x3
+from vsk_dl_utils.layers.gan_layers import StyleRepresentation
 
 NEG_SLOPE = 0.2
 LAST_BIAS = False

@@ -4,7 +4,7 @@ import torch.nn as nn
 
 class MultAlpha(nn.Module):
     """
-    Implements x * alpha
+    Implements x * alpha, usefull in cases y + f(x) * alpha where you don't want to keep parameters in the model
     """
 
     def __init__(self, module, init_blend=0.0):

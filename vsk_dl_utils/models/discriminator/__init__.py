@@ -3,3 +3,5 @@ from .cartoongan_discriminator import (
     StyleCartoonGANDiscriminator,
 )
 from .simple_discriminator import SimpleCartoonGANDiscriminator
+
+__all__ = ['CartoonGANDiscriminator', 'StyleCartoonGANDiscriminator', 'SimpleCartoonGANDiscriminator']

@@ -1,22 +1,15 @@
 import math
 from typing import List
 
-import numpy as np
 import torch
 from torch import nn
-import torch.nn.functional as F
 
 from .abstract_autoencoder import AbstractAutoEncoder
-from ..blocks.conv.convbnrelu import BNReLUConv2d, Conv2dBNReLU
-from ..blocks.conv.res_block import ResidualBlock
-from ..blocks.conv.res_block_v2 import ResidualBlockV2
-from ...layers import conv3x3, conv1x1, Downsample, Upsample, SobelFilter
-from ...utils.norm_layers import get_norm_layer
+from vsk_dl_utils.layers import BNReLUConv2d, Conv2dBNReLU, ResidualBlock, Downsample, Upsample, \
+    SobelFilter, conv3x3, ResidualBlockV2
 
 PADDING_MODE = 'reflect'
 BIAS = False
-
-INV_SQRT2 = 1 / math.sqrt(2)
 
 
 class StableAutoencoderV2(AbstractAutoEncoder):
