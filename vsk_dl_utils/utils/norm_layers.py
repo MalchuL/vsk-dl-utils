@@ -15,7 +15,7 @@ def get_norm_layer(norm_type="instance"):
         norm_layer = GroupNorm
     elif norm_type == "group8":
         norm_layer = GroupNorm8
-    elif norm_type == "none":
+    elif norm_type == "none" or norm_type is None:
         norm_layer = nn.Identity
     else:
         raise NotImplementedError("normalization layer [%s] is not found" % norm_type)

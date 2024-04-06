@@ -19,7 +19,7 @@ def conv3x3(in_planes, out_planes, stride=1, bias=BIAS, use_padding=True, groups
     return conv
 
 
-def conv1x1(in_planes, out_planes, bias=BIAS, groups=1):
+def conv1x1(in_planes, out_planes, bias=BIAS, groups=1, stride=1):
     "1x1 convolution with padding"
-    conv = nn.Conv2d(in_planes, out_planes, kernel_size=1, groups=groups, bias=bias)
+    conv = nn.Conv2d(in_planes, out_planes, kernel_size=1, groups=groups, bias=bias, stride=stride)
     return conv
