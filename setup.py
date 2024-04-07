@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="vsk-dl-utils",
-    version="0.0.7",
+    version="0.0.8",
     description="My utils to train deep learning models",
     author="Vladislav Sorokin",
     packages=find_packages(include=["vsk_dl_utils", "vsk_dl_utils.*"]),

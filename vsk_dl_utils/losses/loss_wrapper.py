@@ -12,53 +12,9 @@ class LossWrapper(nn.Module):
         :param weight: Weight to multiply value.
 
         Useful to avoid params storing in class :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-        https://pypi.org/project/pytweening/
-           :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
+        :param warmup_method: Pytweening warmup method name. Look at https://pypi.org/project/pytweening/
+        :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
         method name. Look at
-        https://pypi.org/project/pytweening/
-          :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
-        method name. Look at
-        https://pypi.org/project/pytweening/
-          :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
-        method name. Look at
-        https://pypi.org/project/pytweening/
-         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
-        method name. Look at
-        https://pypi.org/project/pytweening/
-         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
-        method name. Look at
-        https://pypi.org/project/pytweening/
-         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
-        method name. Look at
-        https://pypi.org/project/pytweening/
-         :param warmup_num_steps: Warmup steps numbers :param warmup_method: Pytweening warmup
-        method name. Look at
-        https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
-        :param warmup_num_steps: Warmup steps numbers
-        :param warmup_method: Pytweening warmup method name. Look at
-            https://pypi.org/project/pytweening/
         :param inverse: If true starts from 1 else from 0. False by default
         """
         super().__init__()
@@ -96,3 +52,8 @@ class LossWrapper(nn.Module):
             return loss_value / self.weight
         else:
             return 0
+
+    def extra_repr(self) -> str:
+        return "weight={}, warmup_num_steps={}, warmup_method={}".format(
+            self.weight, self.interpolator.num_steps, self.interpolator.method
+        )
