@@ -7,19 +7,24 @@ class FreqCounter:
         self._call_count = defaultdict(int)
 
     def __call__(self, key, freq, update_count=True):
-        """Updates frequency counter :param key: Key value to update :param freq: How often it
-        should trigger :param update_count: Should we update counter.
-
-        If True updates counter, and False wouldn't. In False case may trigger several times
-        :return:
+        """Updates frequency counter
+        :param key:
+        Key value to update
+        :param freq: How often it should trigger. 0 and below if it should not trigger. 1 and above if it should trigger
+        :param update_count: Should we update counter. If True updates counter, and False wouldn't. In False case may trigger several times
+        :return: bool - True if frequency is reached, False otherwise
         """
         if update_count:
-            self._call_count[key] += 1
+            if freq > 0:  # Default behavior, update counter
+                self._call_count[key] += 1
 
-            if self._call_count[key] >= freq:
+                if self._call_count[key] >= freq:
+                    self._call_count[key] = 0
+                    return True
+                else:
+                    return False
+            else:  # If freq less than 1, don't trigger it
                 self._call_count[key] = 0
-                return True
-            else:
                 return False
         else:
             return self._call_count[key] + 1 >= freq
