@@ -6,7 +6,7 @@ from vsk_dl_utils.utils.interpolation.interpolator import Interpolator
 
 class LossWrapper(nn.Module):
     def __init__(
-        self, loss, weight=1, warmup_num_steps=None, warmup_method="easeInExpo", inverse=False
+            self, loss, weight=1, warmup_num_steps=None, warmup_method="easeInExpo", inverse=False
     ):
         """Loss wrapper to make it more stable and generic for training :param loss: nn.Module loss
         :param weight: Weight to multiply value.
@@ -54,6 +54,9 @@ class LossWrapper(nn.Module):
             return 0
 
     def extra_repr(self) -> str:
-        return "weight={}, warmup_num_steps={}, warmup_method={}".format(
-            self.weight, self.interpolator.num_steps, self.interpolator.method
-        )
+        if self.interpolator is not None:
+            return "weight={}, warmup_num_steps={}, warmup_method={}".format(
+                self.weight, self.interpolator.num_steps, self.interpolator.method
+            )
+        else:
+            return "weight={}".format(self.weight)
