@@ -43,7 +43,7 @@ class LossWrapper(nn.Module):
                 loss, *out_values = loss
                 return loss * (self.weight * warmup_weight), *out_values
             else:
-                return self.loss(*args, **kwargs) * (self.weight * warmup_weight)
+                return loss * (self.weight * warmup_weight)
         else:
             return 0
 
