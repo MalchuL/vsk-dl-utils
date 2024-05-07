@@ -39,7 +39,7 @@ class LossWrapper(nn.Module):
             self.num_steps += 1
         if self.weight > 0:
             loss = self.loss(*args, **kwargs)
-            if isinstance(loss, tuple):
+            if isinstance(loss, (tuple, list)):
                 loss, *out_values = loss
                 return loss * (self.weight * warmup_weight), *out_values
             else:
